@@ -8,9 +8,9 @@ import json
 
 views = Blueprint('views', __name__)
 
-@views.route('/', methods=["GET", "POST"])
+@views.route('/reminders', methods=["GET", "POST"])
 @login_required
-def home():
+def Reminders():
     if request.method == 'POST':
         note = request.form.get('note')
 
@@ -25,7 +25,15 @@ def home():
 
 
 
+    return render_template("reminders.html", user=current_user)
+
+
+@views.route('/')
+@login_required
+def Home():
+
     return render_template("home.html", user=current_user)
+
 
 @views.route('/delete-note', methods=['POST'])
 def delete_note():
